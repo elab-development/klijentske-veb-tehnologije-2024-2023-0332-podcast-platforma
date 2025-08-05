@@ -1,0 +1,23 @@
+ <div class="login-page">
+    <div class="container">
+        <div class="form-holder">
+            <div class="form-content">
+                <div class="img-holder"><img src="assets/img/logo.png" alt="logo" class="form-logo"></div>
+                <h1>Dobrodošli na Podcastify</h1>
+                <p>Prijavite se kako bi ste pristupili svom nalogu</p>
+                <form (ngSubmit)="login()" #loginForm="ngForm" class="login-forma">
+                    <input type="email"  [(ngModel)]="email" required name="email" id="email" placeholder="Email">
+                    <input type="password" [(ngModel)]="password" required name="password" id="password" placeholder="Lozinka">
+                    <button type="button" (click)="login()">Prijavi se</button>
+                    <a href="#">Registruj se ovde!</a>
+                    <a href="#">Zaboravili ste lozinku?</a>
+                    <div class="error-overlay" *ngIf="errMsg">
+                        <div class="error-message">
+                        {{ errMsg }}
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+ </div>

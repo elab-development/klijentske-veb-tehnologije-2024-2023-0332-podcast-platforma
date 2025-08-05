@@ -1,1 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Bilbo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&family=Bilbo&display=swap');
+body{
+    background-color: #16213B;
+    font-family: 'Anonymous Pro', monospace;
+    color: white;
+}
