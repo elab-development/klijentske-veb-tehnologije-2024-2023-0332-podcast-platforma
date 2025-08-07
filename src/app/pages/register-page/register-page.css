@@ -1,4 +1,4 @@
-.login-page {
+.register-page {
     background-image: url('../../../../public/assets/img/login_reg_bg1.jpg');
     background-size: cover;
 }
@@ -12,8 +12,8 @@
 }
 
 .form-holder{
-    width: 520px;
-    height: 520px;
+    width: 950px;
+    height: 610px;
     background-color: rgba(22, 34, 80, 0.75);
     border-radius: 35px;
     display: flex;
@@ -45,15 +45,15 @@
     letter-spacing: 1px;
 }
 
-.login-forma{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.register-forma{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px; 
     width: 100%;
     margin-top: 20px;
 }
 
-.login-forma input{
+.register-forma input{
     display: block;
     width: 385px;
     height: 60px;
@@ -63,20 +63,22 @@
     text-align: center;
 }
 
-.login-forma input:hover{
+.register-forma input:hover{
     background-color: rgb(255, 255, 255, 0.9);
 }
 
-.login-forma button{
+.register-forma button{
     width: 185px;
     height: 60px;
     margin-top: 25px;
     background-color: rgb(24, 218, 204, 0.8);
     color: #FEFE3A;
     border-radius: 20px;
+    grid-column: span 2;
+    justify-self: center;
 }
 
-.login-forma button:hover{
+.register-forma button:hover{
     background-color: rgb(24, 218, 204, 0.9);
     color: #FEFE3A;
 }

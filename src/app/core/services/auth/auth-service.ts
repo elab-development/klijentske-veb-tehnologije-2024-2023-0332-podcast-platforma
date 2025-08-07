@@ -1,11 +1,13 @@
 import { inject, Injectable } from '@angular/core';
-import {Auth, signInWithEmailAndPassword, UserCredential} from '@angular/fire/auth';
+import {Auth, signInWithEmailAndPassword, UserCredential, createUserWithEmailAndPassword, updateProfile} from '@angular/fire/auth';
+import { Firestore, doc, setDoc } from '@angular/fire/firestore';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
- constructor(private auth: Auth) {}
+ constructor(private auth: Auth, private firestore: Firestore) {}
 
   async login(email: string, password: string): Promise<UserCredential> {
     try {
@@ -19,9 +21,30 @@ export class AuthService {
   async logout(): Promise<void> {
   try {
     await this.auth.signOut();
-  } catch (error) {
+    } catch (error) {
     console.error('Odjava error:', error);
     throw error;
+    }
   }
-}
+
+  async register(email: string, password: string, username: string, ime: string) {
+    try {
+      const userCredential = await createUserWithEmailAndPassword(this.auth, email, password);
+
+      await updateProfile(userCredential.user, { displayName: username });
+
+      const userDoc = doc(this.firestore, 'users', userCredential.user.uid);
+      await setDoc(userDoc, {
+        uid: userCredential.user.uid,
+        email: email,
+        username: username,
+        ime: ime,
+        createdAt: new Date()
+      });
+      return userCredential;
+
+    } catch (error) {
+      throw error;
+    }
+  }
 }
