@@ -1,0 +1,100 @@
+body {
+    background-color: #16213B;
+    color: white;
+}
+
+.navbar ul {
+    text-decoration: none;
+    display: flex;
+    list-style-type: none;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0; 
+    padding: 0; 
+    width: 100%;
+}
+
+.navbar img {
+    width: 55px;
+    height: 55px;
+}
+
+.navbar li a {
+    text-decoration: none;
+    color: white;
+    margin-left: 20px;
+    padding: 0.5rem 1rem; 
+    display: inline-block;
+}
+
+
+.navbar li.dropdown {
+    position: relative; 
+}
+
+.navbar li.dropdown .dropdown-toggle {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin-left: 20px;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+}
+
+.navbar li.dropdown .dropdown-toggle:hover {
+    background-color: #274060;
+}
+
+.navbar li.dropdown .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #274060;
+    min-width: 150px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    border-radius: 4px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+    z-index: 1000;
+}
+
+.navbar li.dropdown .dropdown-menu.show {
+    display: block;
+}
+
+.navbar li.dropdown .dropdown-menu li a {
+    color: white;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    display: block;
+}
+
+.navbar li.dropdown .dropdown-menu li a:hover {
+    background-color: #3b5998;
+}
+
+
+.navbar li.search-bar {
+  flex-grow: 1;          
+  display: flex;
+  justify-content: center; 
+}
+
+.navbar li.search-bar input[type="text"] {
+  width: 50%;           
+  max-width: 400px;     
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: none;
+  font-size: 1rem;
+  border-radius: 20px;
+}
+
+.profilna {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
