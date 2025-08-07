@@ -1,6 +1,8 @@
 <app-navbar></app-navbar>
-
-<div>
-    <p>home-page works!</p>
-<button (click)="logout()">Logout</button>
+<div class="h1-holder"><h1>Najnovije</h1></div>
+<div class="podcasts-container">
+  <app-podcast-card *ngFor="let podcast of podcastsToShow" [podcast]="podcast"></app-podcast-card>
 </div>
+<div class="h1-holder"><h1>Preporuceno</h1></div>
+
+<button (click)="logout()">Logout</button>
