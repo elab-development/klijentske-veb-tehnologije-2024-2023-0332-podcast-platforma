@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../core/services/auth/auth-service';
 import { Navbar } from '../../shared/components/navbar/navbar';
 import { GetPodcasts } from '../../core/services/podcast/get-podcasts';
-import { Podcast } from '../../core/interfaces/podcast';
+import { Podcast } from '../../core/interfaces/ipodcast';
 import { CommonModule } from '@angular/common';
 import { PodcastCardComponent } from '../../shared/components/podcast-card/podcast-card';
 

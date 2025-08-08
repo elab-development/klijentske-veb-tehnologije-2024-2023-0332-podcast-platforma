@@ -1,4 +1,6 @@
-export class User {
+import { IUser } from "../../interfaces/iuser";
+
+export class User implements IUser {
     uid: string;
     email: string;
     username: string;

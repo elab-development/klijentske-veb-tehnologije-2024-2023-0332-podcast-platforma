@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Podcast } from '../../../core/interfaces/podcast';
+import { Podcast } from '../../../core/interfaces/ipodcast';
 
 @Component({
   selector: 'app-podcast-card',

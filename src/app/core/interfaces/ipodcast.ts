@@ -1,4 +1,4 @@
-export interface Podcast {
+export interface IPodcast {
   id?: string;            
   title: string;           
   description: string;     
@@ -7,4 +7,5 @@ export interface Podcast {
   category: string;        
   duration: string;        
   uploadDate: any;         
+  uploadedBy?: string;
 }
