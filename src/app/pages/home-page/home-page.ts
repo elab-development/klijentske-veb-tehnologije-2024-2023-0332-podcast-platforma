@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../core/services/auth/auth-service';
 import { Navbar } from '../../shared/components/navbar/navbar';
 import { GetPodcasts } from '../../core/services/podcast/get-podcasts';
@@ -10,7 +10,7 @@ import { PodcastCardComponent } from '../../shared/components/podcast-card/podca
 @Component({
   selector: 'app-home-page',
   standalone: true,
-  imports: [Navbar, CommonModule, PodcastCardComponent],
+  imports: [Navbar, CommonModule, PodcastCardComponent, RouterModule],
   templateUrl: './home-page.html',
   styleUrls: ['./home-page.css']
 })

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collection, collectionData, query, orderBy } from '@angular/fire/firestore';
+import { Firestore, collection, collectionData, query, orderBy, docData, doc } from '@angular/fire/firestore';
 import { Auth, authState } from '@angular/fire/auth';
 import { Observable, of, switchMap } from 'rxjs';
 import { IPodcast } from '../../interfaces/ipodcast';
@@ -19,6 +19,19 @@ export class GetPodcasts {
           return collectionData(q, { idField: 'id' }) as Observable<IPodcast[]>;
         } else {
           return of([]);
+        }
+      })
+    );
+  }
+
+  getPodcastById(id: string): Observable<IPodcast | null> {
+    return authState(this.auth).pipe(
+      switchMap(user => {
+        if (user) {
+          const docRef = doc(this.firestore, `podcasts/${id}`);
+          return docData(docRef, { idField: 'id' }) as Observable<IPodcast>;
+        } else {
+          return of(null);
         }
       })
     );

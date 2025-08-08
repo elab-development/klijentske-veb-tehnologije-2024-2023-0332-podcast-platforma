@@ -5,7 +5,7 @@ export class Podcast implements IPodcast {
   id?: string;
   title: string;
   description: string;
-  audioUrl: string;
+  videoUrl: string;
   thumbnailUrl: string;
   category: string;
   duration: string;
@@ -16,7 +16,7 @@ export class Podcast implements IPodcast {
     this.id = data.id;
     this.title = data.title;
     this.description = data.description;
-    this.audioUrl = data.audioUrl;
+    this.videoUrl = data.videoUrl;
     this.thumbnailUrl = data.thumbnailUrl;
     this.category = data.category;
     this.duration = data.duration;
