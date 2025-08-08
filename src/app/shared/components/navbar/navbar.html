@@ -18,9 +18,10 @@
             </ul>
         </li>
         <li class="search-bar">
-            <input type="text" placeholder="Search..." />
+            <input type="text" placeholder="Pretraga⌕" />
         </li>
         <li><a routerLink="/home">Omiljeni</a></li>
-        <li><a routerLink="/home"><img src="assets/img/user2.png" alt="profilna" class="profilna"></a></li>
+        <li><button class="objavi-podcast" routerLink="/home">Objavi podkast</button></li>
+        <li><a routerLink="/home"><img [src]="user?.getProfilePic()"  alt="profilna" class="profilna"></a></li>
     </ul>
 </nav>

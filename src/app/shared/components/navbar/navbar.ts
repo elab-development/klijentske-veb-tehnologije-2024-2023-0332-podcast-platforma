@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { User } from '../../../core/models/user/user';
+import { GetUser } from '../../../core/services/user/get-user';
 
 @Component({
   selector: 'app-navbar',
@@ -17,5 +19,15 @@ export class Navbar {
 
   closeDropdown() {
     this.isOpen = false;
+  }
+
+  user?: User;
+
+  constructor(private getUser: GetUser) {}
+
+  ngOnInit(): void {
+    this.getUser.getCurrentUser().subscribe(userData => {
+      this.user = userData;
+    });
   }
 }
