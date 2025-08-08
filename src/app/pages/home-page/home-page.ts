@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../core/services/auth/auth-service';
 import { Navbar } from '../../shared/components/navbar/navbar';
 import { GetPodcasts } from '../../core/services/podcast/get-podcasts';
-import { Podcast } from '../../core/interfaces/ipodcast';
+import { IPodcast } from '../../core/interfaces/ipodcast';
 import { CommonModule } from '@angular/common';
 import { PodcastCardComponent } from '../../shared/components/podcast-card/podcast-card';
 
@@ -15,7 +15,7 @@ import { PodcastCardComponent } from '../../shared/components/podcast-card/podca
   styleUrls: ['./home-page.css']
 })
 export class HomePage implements OnInit {
-  podcastsToShow: Podcast[] = [];
+  podcastsToShow: IPodcast[] = [];
 
   constructor(
     private authService: AuthService,
@@ -50,7 +50,7 @@ export class HomePage implements OnInit {
     }
   }
 
-  trackByPodcastId(index: number, podcast: Podcast): string {
+  trackByPodcastId(index: number, podcast: IPodcast): string {
     return podcast.id ?? '';
   }
 }

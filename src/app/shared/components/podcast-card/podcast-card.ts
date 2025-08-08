@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Podcast } from '../../../core/interfaces/ipodcast';
+import { IPodcast } from '../../../core/interfaces/ipodcast';
 
 @Component({
   selector: 'app-podcast-card',
@@ -10,7 +10,7 @@ import { Podcast } from '../../../core/interfaces/ipodcast';
   styleUrls: ['./podcast-card.css']
 })
 export class PodcastCardComponent {
-  @Input() podcast!: Podcast;
+  @Input() podcast!: IPodcast;
 
   get formattedDuration(): string {
     const duration = Number(this.podcast.duration);
