@@ -1,10 +1,20 @@
 <app-navbar></app-navbar>
-<div class="h1-holder"><h1>Najnovije</h1></div>
-
-<div class="podcasts-container">
-  <app-podcast-card *ngFor="let podcast of podcastsToShow" [podcast]="podcast" ></app-podcast-card>
+<div class="h1-holder">
+  <h1>Najnovije</h1>
+  <a routerLink="/home">vidi još...</a>
 </div>
 
-<div class="h1-holder"><h1>Preporuceno</h1></div>
+<div class="podcasts-container">
+  <ng-container *ngFor="let podcast of podcastsToShow; trackBy: trackByPodcastId">
+    <a [routerLink]="['/video', podcast.id]" class="podcast-link">
+      <app-podcast-card [podcast]="podcast"></app-podcast-card>
+    </a>
+  </ng-container>
+</div>
+
+<div class="h1-holder">
+  <h1>Preporuceno</h1>
+  <a routerLink="/home">vidi još...</a>
+</div>
 
 <button (click)="logout()">Logout</button>

@@ -9,4 +9,16 @@
   font-size: 55px;
   margin-left: 1%;
   margin-top: 3%;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.h1-holder a{
+  text-decoration: none;
+  color: white;
+  font-size: 24px;
+}
+.podcast-link{
+  text-decoration: none;
+  color: inherit;
 }

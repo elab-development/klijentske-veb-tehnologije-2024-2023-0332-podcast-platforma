@@ -1,0 +1,16 @@
+<app-navbar></app-navbar>
+
+<div *ngIf="podcast">
+  <iframe
+    *ngIf="embedUrl"
+    [src]="embedUrl"
+    width="800"
+    height="450"
+    frameborder="0"
+    allowfullscreen>
+  </iframe>
+
+  <h2>{{ podcast.title }}</h2>
+  <p>{{ podcast.description }}</p>
+  <small>Autor: {{ podcast.id }}</small>
+</div> 
