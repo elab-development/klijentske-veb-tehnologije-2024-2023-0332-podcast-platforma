@@ -1,0 +1,21 @@
+.video-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5% 10%;
+}
+
+.video-info{
+    text-align: left;
+}
+.video-info img.profilna {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.video-info a{
+    text-decoration: none;
+    color: white;
+}

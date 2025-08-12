@@ -23,4 +23,11 @@ export class GetUser {
       })
     );
   }
+
+  getUserById(userId: string): Observable<User | undefined> {
+    const ref = doc(this.firestore, `users/${userId}`);
+    return docData(ref, { idField: 'uid' }).pipe(
+      map(data => data ? new User(data) : undefined)
+    );
+  }
 }

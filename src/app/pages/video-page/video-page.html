@@ -1,16 +1,25 @@
 <app-navbar></app-navbar>
 
-<div *ngIf="podcast">
-  <iframe
+<div *ngIf="podcast" class="video-container">
+    <iframe
     *ngIf="embedUrl"
     [src]="embedUrl"
-    width="800"
+    width="1000"
     height="450"
     frameborder="0"
     allowfullscreen>
   </iframe>
+  <div class="video-info">
+    <h2>{{ podcast.title }}</h2>
+    <a routerLink="/home"><img [src]="profilePicUrl"  alt="profilna" class="profilna"> {{ username }}</a>
+    <p>{{ podcast.description }}</p>
+  </div>
+  <div class="ostatak-video-page"> 
+    <div class="comment-section">
 
-  <h2>{{ podcast.title }}</h2>
-  <p>{{ podcast.description }}</p>
-  <small>Autor: {{ podcast.id }}</small>
+    </div>
+    <div class="recommended-video">
+
+    </div>
+  </div>
 </div> 
