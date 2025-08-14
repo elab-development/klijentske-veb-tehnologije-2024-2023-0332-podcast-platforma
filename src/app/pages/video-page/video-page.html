@@ -1,5 +1,3 @@
-<app-navbar></app-navbar>
-
 <div *ngIf="podcast" class="video-container">
     <iframe
     *ngIf="embedUrl"
@@ -18,9 +16,7 @@
     <div class="comment-section">
         <textarea name="comment-content" placeholder="Ostavite komentar"></textarea>
         <button>Objavi</button>
-        <div class="posted-comments">
-
-        </div>
+        <p>Funkcija komentari dolazi kasnije</p>
     </div>
      <div class="recommendation-section">
       <h2>{{ recommendationMessage }}</h2>
