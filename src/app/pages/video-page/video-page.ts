@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { GetPodcasts } from '../../core/services/podcast/get-podcasts';
 import { GetUser } from '../../core/services/user/get-user';
 import { IPodcast } from '../../core/interfaces/ipodcast';
@@ -7,6 +7,8 @@ import { CommonModule } from '@angular/common';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { PodcastCardComponent } from '../../shared/components/podcast-card/podcast-card';
+import { FavoritesService } from '../../core/services/favorites/favorites-service';
+import { Auth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-video-page',
@@ -25,25 +27,35 @@ export class VideoPage implements OnInit {
   recommendationMessage?: string;
   currentPodcastId?: string;
   router: any;
+  isFav: boolean = false;
 
-  constructor(
-    private getPodcasts: GetPodcasts,
-    private getUser: GetUser,
-    private route: ActivatedRoute,
-    private sanitizer: DomSanitizer
-  ) {}
+  private getPodcasts = inject(GetPodcasts);
+  private getUser = inject(GetUser);
+  private route = inject(ActivatedRoute);
+  private sanitizer = inject(DomSanitizer);
+  private favoritesService = inject(FavoritesService);
+  private auth = inject(Auth);
+  
 
-  ngOnInit(): void {
-    
+ ngOnInit(): void {
+  this.route.paramMap.subscribe(params => {
+    const id = params.get('id');
+    if (id) {
+      this.currentPodcastId = id;
+      this.loadPodcast(id);
 
-    this.route.paramMap.subscribe(params => {
-      const id = params.get('id');
-      if (id) {
-        this.currentPodcastId = id;
-        this.loadPodcast(id);
-      }
-    });
-  }
+      this.auth.onAuthStateChanged(user => {
+        if (user) {
+          this.favoritesService.isFavorite$(id).subscribe(isFav => {
+            this.isFav = isFav;
+          });
+        } else {
+          this.isFav = false; 
+        }
+      });
+    }
+  });
+}
 
   private loadPodcast(podcastId: string): void {
     this.getPodcasts.getPodcastById(podcastId).subscribe(podcast => {
@@ -54,6 +66,7 @@ export class VideoPage implements OnInit {
       this.embedUrl = safeUrl
         ? this.sanitizer.bypassSecurityTrustResourceUrl(safeUrl)
         : undefined;
+
 
       if (podcast.uploadedBy) {
         this.getUser.getUserById(podcast.uploadedBy).subscribe(user => {
@@ -91,4 +104,29 @@ export class VideoPage implements OnInit {
     const videoId = match ? match[1] : null;
     return videoId ? `https://www.youtube.com/embed/${videoId}` : null;
   }
+async toggleFavorite(): Promise<void> {
+    console.log('Klik na zvezdicu', this.currentPodcastId);
+    if (!this.currentPodcastId) return;
+
+    const user = this.auth.currentUser;
+    if (!user) {
+      console.warn('User not logged in');
+      return;
+    }
+
+    try {
+      if (this.isFav) {
+        this.isFav = false; // odmah menja boju
+        await this.favoritesService.removeFromFavorites(this.currentPodcastId);
+        console.log('Uklonjeno iz favorita');
+      } else {
+        this.isFav = true; // odmah menja boju
+        await this.favoritesService.addToFavorites(this.currentPodcastId);
+        console.log('Dodato u favorite');
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
 }

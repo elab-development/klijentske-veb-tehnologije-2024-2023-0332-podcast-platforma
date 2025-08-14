@@ -12,7 +12,9 @@
       <h2>{{ podcast.title }}</h2>
       <div class="profil-and-fav">
       <a routerLink="/home"><img [src]="profilePicUrl"  alt="profilna" class="profilna"> {{ username }}</a>
-      <a class="fav">☆</a>
+      <a class="fav" (click)="toggleFavorite()" [class.fav-active]="isFav">
+        ☆
+      </a>
       </div>
     <p>{{ podcast.description }}</p>
   </div>
