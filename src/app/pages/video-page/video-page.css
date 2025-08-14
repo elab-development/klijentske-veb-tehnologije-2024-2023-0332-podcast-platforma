@@ -19,3 +19,25 @@
     text-decoration: none;
     color: white;
 }
+
+.ostatak-video-page{
+    display: flex;
+}
+.recommendation-section{
+    align-self: flex-end;
+    width: 50%;
+}
+.comment-section{
+    align-self: flex-start;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.comment-section button{
+    border-radius: 25px;
+    background-color: rgb(24, 218, 204, 0.8);
+    color: #FEFE3A;
+    padding: 50px, 10px;
+}

@@ -16,10 +16,19 @@
   </div>
   <div class="ostatak-video-page"> 
     <div class="comment-section">
+        <textarea name="comment-content" placeholder="Ostavite komentar"></textarea>
+        <button>Objavi</button>
+        <div class="posted-comments">
 
+        </div>
     </div>
-    <div class="recommended-video">
-
+     <div class="recommendation-section">
+      <h2>{{ recommendationMessage }}</h2>
+      <div *ngIf="recommendedPodcast" class="recommended-podcast">
+        <a [routerLink]="['/video', recommendedPodcast.id]">
+            <app-podcast-card [podcast]="recommendedPodcast"></app-podcast-card>
+        </a>
+      </div>
     </div>
   </div>
-</div> 
+  </div>
