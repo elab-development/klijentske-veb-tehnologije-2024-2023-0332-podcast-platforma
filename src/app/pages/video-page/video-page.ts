@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Navbar } from '../../shared/components/navbar/navbar';
 import { GetPodcasts } from '../../core/services/podcast/get-podcasts';
 import { GetUser } from '../../core/services/user/get-user';
 import { IPodcast } from '../../core/interfaces/ipodcast';
@@ -11,7 +10,7 @@ import { PodcastCardComponent } from '../../shared/components/podcast-card/podca
 
 @Component({
   selector: 'app-video-page',
-  imports: [Navbar, CommonModule, RouterModule, PodcastCardComponent],
+  imports: [ CommonModule, RouterModule, PodcastCardComponent],
   standalone: true,
   templateUrl: './video-page.html',
   styleUrls: ['./video-page.css']
