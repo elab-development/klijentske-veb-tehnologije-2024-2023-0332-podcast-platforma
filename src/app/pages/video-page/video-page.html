@@ -2,14 +2,18 @@
     <iframe
     *ngIf="embedUrl"
     [src]="embedUrl"
-    width="1000"
+    width="100%"
     height="450"
     frameborder="0"
-    allowfullscreen>
+    allowfullscreen
+    style="display:block">
   </iframe>
   <div class="video-info">
-    <h2>{{ podcast.title }}</h2>
-    <a routerLink="/home"><img [src]="profilePicUrl"  alt="profilna" class="profilna"> {{ username }}</a>
+      <h2>{{ podcast.title }}</h2>
+      <div class="profil-and-fav">
+      <a routerLink="/home"><img [src]="profilePicUrl"  alt="profilna" class="profilna"> {{ username }}</a>
+      <a class="fav">☆</a>
+      </div>
     <p>{{ podcast.description }}</p>
   </div>
   <div class="ostatak-video-page"> 

@@ -24,6 +24,7 @@ export class VideoPage implements OnInit {
   recommendedPodcast?: IPodcast;
   recommendationMessage?: string;
   currentPodcastId?: string;
+  router: any;
 
   constructor(
     private getPodcasts: GetPodcasts,
@@ -33,6 +34,8 @@ export class VideoPage implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    
+
     this.route.paramMap.subscribe(params => {
       const id = params.get('id');
       if (id) {
