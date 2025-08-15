@@ -10,6 +10,7 @@ import { PodcastCardComponent } from '../../shared/components/podcast-card/podca
 
 @Component({
   selector: 'app-omiljeno',
+  standalone: true,
   imports: [CommonModule, FormsModule, PodcastCardComponent, RouterModule],
   templateUrl: './omiljeno.html',
   styleUrl: './omiljeno.css'
