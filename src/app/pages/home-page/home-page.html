@@ -11,9 +11,20 @@
   </ng-container>
 </div>
 
-<div class="h1-holder">
-  <h1>Preporuceno</h1>
+<div class="h1-holder" *ngIf="recommendedPodcasts.length > 0">
+  <h1>Preporučeno</h1>
   <a routerLink="/home">vidi još...</a>
+</div>
+
+<div class="podcasts-container" *ngIf="recommendedPodcasts.length > 0">
+  <ng-container *ngFor="let podcast of recommendedPodcasts; trackBy: trackByPodcastId">
+    <a [routerLink]="['/video', podcast.id]" class="podcast-link">
+      <app-podcast-card [podcast]="podcast"></app-podcast-card>
+    </a>
+  </ng-container>
+</div>
+<div *ngIf="recommendedPodcasts.length === 0">
+  <p>Još nemamo preporuke za vas. Dodajte podkaste u omiljene da biste videli predloge.</p>
 </div>
 
 

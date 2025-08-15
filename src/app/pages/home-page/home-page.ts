@@ -5,6 +5,8 @@ import { GetPodcasts } from '../../core/services/podcast/get-podcasts';
 import { IPodcast } from '../../core/interfaces/ipodcast';
 import { CommonModule } from '@angular/common';
 import { PodcastCardComponent } from '../../shared/components/podcast-card/podcast-card';
+import { FavoritesService } from '../../core/services/favorites/favorites-service';
+import { combineLatest, map } from 'rxjs';
 
 @Component({
   selector: 'app-home-page',
@@ -20,14 +22,19 @@ export class HomePage implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private getPodcasts: GetPodcasts
+    private getPodcasts: GetPodcasts,
+    private favoritesService: FavoritesService 
   ) {}
 
   ngOnInit(): void {
-    this.getPodcasts.getAllPodcasts().subscribe(data => {
-      console.log('Podcasts from firestore:', data);
-
-      const sorted = data.sort((a, b) => {
+  combineLatest([
+    this.getPodcasts.getAllPodcasts(),
+    this.favoritesService.getUserFavorites$()
+  ])
+  .pipe(
+    map(([allPodcasts, favorites]) => {
+      // --- Najnoviji ---
+      const sorted = [...allPodcasts].sort((a, b) => {
         const dateA = a.uploadDate && 'toDate' in a.uploadDate
           ? a.uploadDate.toDate().getTime()
           : new Date(a.uploadDate).getTime();
@@ -36,11 +43,47 @@ export class HomePage implements OnInit {
           : new Date(b.uploadDate).getTime();
         return dateB - dateA;
       });
-
       this.podcastsToShow = sorted.slice(0, 3);
-    });
-    
-  }
+
+      // --- Preporučeni ---
+      if (!favorites.length) {
+        this.recommendedPodcasts = [];
+        return;
+      }
+
+      // filtriramo samo ispravne string ID-ove iz favorites
+      const favoriteIds = favorites
+        .map(f => f.videoId)
+        .filter((id): id is string => typeof id === 'string');
+
+      // podkasti koji su u favorites (samo oni koji imaju ID)
+      const favoritePodcasts = allPodcasts.filter(
+        p => p.id && favoriteIds.includes(p.id)
+      );
+
+      // sve kategorije iz omiljenih
+      const favoriteCategories = Array.from(
+        new Set(favoritePodcasts.map(p => p.category).filter(Boolean))
+      );
+
+      // svi iz tih kategorija, ali nisu omiljeni
+      const sameCategoryPodcasts = allPodcasts.filter(
+        p => p.id &&
+             favoriteCategories.includes(p.category) &&
+             !favoriteIds.includes(p.id)
+      );
+
+      // nasumično izaberi do 3
+      const shuffled = sameCategoryPodcasts
+        .map(p => ({ p, sort: Math.random() }))
+        .sort((a, b) => a.sort - b.sort)
+        .map(obj => obj.p);
+
+      this.recommendedPodcasts = shuffled.slice(0, 3);
+    })
+  )
+  .subscribe();
+}
 
   async logout() {
     try {
