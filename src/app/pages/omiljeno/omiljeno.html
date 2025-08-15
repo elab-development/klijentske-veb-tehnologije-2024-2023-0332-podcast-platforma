@@ -1,0 +1,22 @@
+<div class="sort-container">
+   <div class="h1-holder">
+  <h1>Omljeno</h1>
+</div>
+  <select id="sort" [(ngModel)]="sortOption" (change)="sortPodcasts()">
+    <option value="" disabled selected hidden>Filter</option>
+    <option value="newest">Najnoviji prvo</option>
+    <option value="oldest">Najstariji prvo</option>
+    <option value="longest">Najduži prvo</option>
+    <option value="shortest">Najkraći prvo</option>
+    <option value="az">Abecedno rastuće</option>
+    <option value="za">Abecedno opadajuće</option>
+  </select>
+</div>
+
+<div class="podcasts-container">
+  <ng-container *ngFor="let podcast of podcastsToShow; trackBy: trackByPodcastId">
+    <a [routerLink]="['/video', podcast.id]" class="podcast-link">
+      <app-podcast-card [podcast]="podcast"></app-podcast-card>
+    </a>
+  </ng-container>
+</div>

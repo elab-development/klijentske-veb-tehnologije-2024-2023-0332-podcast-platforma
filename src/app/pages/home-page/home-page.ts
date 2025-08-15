@@ -15,6 +15,7 @@ import { PodcastCardComponent } from '../../shared/components/podcast-card/podca
 })
 export class HomePage implements OnInit {
   podcastsToShow: IPodcast[] = [];
+  recommendedPodcasts: IPodcast[] = [];
 
   constructor(
     private authService: AuthService,
@@ -38,6 +39,7 @@ export class HomePage implements OnInit {
 
       this.podcastsToShow = sorted.slice(0, 3);
     });
+    
   }
 
   async logout() {
@@ -52,4 +54,6 @@ export class HomePage implements OnInit {
   trackByPodcastId(index: number, podcast: IPodcast): string {
     return podcast.id ?? '';
   }
+
+  
 }

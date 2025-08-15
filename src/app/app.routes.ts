@@ -3,8 +3,10 @@ import { LoginPage } from './pages/login-page/login-page';
 import { HomePage } from './pages/home-page/home-page';
 import { RegisterPage } from './pages/register-page/register-page';
 import { VideoPage } from './pages/video-page/video-page'
+import { Omiljeno } from './pages/omiljeno/omiljeno'
 
 export const routes: Routes = [
+    { path: 'omiljeno', component: Omiljeno },
     { path: 'video/:id', component: VideoPage },
     { path: 'register', component: RegisterPage },
     { path: 'login', component: LoginPage },

@@ -1,9 +1,9 @@
 // src/app/core/services/favorites.service.ts
 import { Injectable, inject, EnvironmentInjector } from '@angular/core';
-import { Firestore, doc, setDoc, deleteDoc, docData } from '@angular/fire/firestore';
-import { Auth } from '@angular/fire/auth';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Firestore, doc, setDoc, deleteDoc, docData, collection, collectionData } from '@angular/fire/firestore';
+import { Auth, authState } from '@angular/fire/auth';
+import { from, Observable, of } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -39,5 +39,20 @@ export class FavoritesService {
 
     const favRef = doc(this.firestore, `users/${user.uid}/favorites/${videoId}`);
     return docData(favRef).pipe(map(doc => !!doc));
+  }
+
+   getUserFavorites$(): Observable<{ videoId: string; addedAt: Date }[]> {
+    return authState(this.auth).pipe(
+      switchMap(user => {
+        if (!user) return of([]);
+        const favsRef = collection(this.firestore, `users/${user.uid}/favorites`);
+        return collectionData(favsRef, { idField: 'id' }).pipe(
+          map(favs => favs.map(f => ({
+            videoId: f['videoId'],
+            addedAt: f['addedAt']?.toDate ? f['addedAt'].toDate() : new Date(f['addedAt'])
+          })))
+        );
+      })
+    );
   }
 }

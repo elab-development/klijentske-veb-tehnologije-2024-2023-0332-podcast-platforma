@@ -30,4 +30,5 @@ export class GetPodcasts {
       return collectionData(q, { idField: 'id' }) as Observable<IPodcast[]>;
     });
   }
+  
 }
