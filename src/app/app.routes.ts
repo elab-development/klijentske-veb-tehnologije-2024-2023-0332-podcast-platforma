@@ -4,8 +4,10 @@ import { HomePage } from './pages/home-page/home-page';
 import { RegisterPage } from './pages/register-page/register-page';
 import { VideoPage } from './pages/video-page/video-page'
 import { Omiljeno } from './pages/omiljeno/omiljeno'
+import { Category } from './shared/components/category/category';
 
 export const routes: Routes = [
+    { path: 'category/:id', component: Category},
     { path: 'omiljeno', component: Omiljeno },
     { path: 'video/:id', component: VideoPage },
     { path: 'register', component: RegisterPage },

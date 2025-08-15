@@ -6,15 +6,13 @@
                 Kategorije
             </button>
             <ul class="dropdown-menu" [class.show]="isOpen">
-                <li><a routerLink="/home" (click)="closeDropdown()">Komedija</a></li>
-                <li><a routerLink="/home" (click)="closeDropdown()">Politika</a></li>
-                <li><a routerLink="/home" (click)="closeDropdown()">Ekonomija</a></li>
-                <li><a routerLink="/home" (click)="closeDropdown()">Automobili</a></li>
-                <li><a routerLink="/home" (click)="closeDropdown()">Gaming</a></li>
-                <li><a routerLink="/home" (click)="closeDropdown()">Sport</a></li>
-                <li><a routerLink="/home" (click)="closeDropdown()">Debata</a></li>
-                <li><a routerLink="/home" (click)="closeDropdown()">Preporučeno</a></li>
-                <li><a routerLink="/home" (click)="closeDropdown()">Najnovije</a></li>
+                <li><a routerLink="/category/komedija" (click)="closeDropdown()">Komedija</a></li>
+                <li><a routerLink="/category/politika" (click)="closeDropdown()">Politika</a></li>
+                <li><a routerLink="/category/ekonomija" (click)="closeDropdown()">Ekonomija</a></li>
+                <li><a routerLink="/category/automobili" (click)="closeDropdown()">Automobili</a></li>
+                <li><a routerLink="/category/gaming" (click)="closeDropdown()">Gaming</a></li>
+                <li><a routerLink="/category/sport" (click)="closeDropdown()">Sport</a></li>
+                <li><a routerLink="/category/debata" (click)="closeDropdown()">Debata</a></li>
             </ul>
         </li>
         <li class="search-bar">
