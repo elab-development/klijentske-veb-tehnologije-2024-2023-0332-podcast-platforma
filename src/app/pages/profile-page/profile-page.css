@@ -1,0 +1,149 @@
+.profile-container {
+  padding: 20px;
+  background-color: #061b3a;
+  color: white;
+  min-height: 100vh;
+}
+
+.profile-header {
+  background: rgb(0, 0, 0, 0);
+  padding: 20px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: -5%;
+}
+
+
+.username {
+  font-size: 24px;
+  font-weight: bold;
+  flex-grow: 1;
+}
+
+.profile-actions {
+  display: flex;
+  align-items: center;
+}
+
+.logout-btn {
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: white;
+}
+
+.no-podcasts {
+  margin-top: 30px;
+  text-align: center;
+  font-size: 18px;
+  color: #ddd;
+}
+
+.podcast-list {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.load-more {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.load-more button {
+  padding: 10px 20px;
+  background: #0d3b66;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.load-more button:hover {
+  background: #145087;
+}
+.podcast-link{
+  text-decoration: none;
+  color: inherit;
+}
+
+#sort {
+  appearance: none;        
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: none;            
+  background: transparent; 
+  font-size: 16px;
+  padding: 4px 8px;
+  cursor: pointer;
+  color: white;             
+}
+
+#sort:hover {
+  background-color: rgba(0,0,0,0.05); 
+}
+
+
+#sort option {
+  background-color: #fff;
+  color: #ffffff;
+  padding: 4px 8px;
+}
+
+.filter-container{
+    display: flex;
+    justify-content: right;
+    margin-top: 20px;
+}
+.profilna {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.banner {
+  width: 100%;
+  height: 180px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 12px;
+  position: relative;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+}
+.banner.clickable { cursor: pointer; }
+.banner-overlay {
+  position: absolute; bottom: 8px; right: 12px;
+  background: rgba(0,0,0,0.5); color: #fff;
+  padding: 6px 10px; border-radius: 8px; font-size: 12px;
+}
+
+.avatar-holder { position: relative; }
+.avatar-holder.clickable { cursor: pointer; }
+.avatar-overlay {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: rgba(0,0,0,0.45); color: #fff;
+  text-align: center; font-size: 12px; padding: 4px; border-radius: 0 0 50% 50%;
+}
+
+.followers { font-size: 14px; color: #cfe0ff; margin-top: 4px; }
+
+.follow-btn {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: #1e88ff; color: #fff; border: none; cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+.plus-icon { font-size: 20px; line-height: 1; }
+
+.flash {
+  margin-top: 10px; background: #0d3b66; color: #fff;
+  padding: 8px 12px; border-radius: 8px; text-align: center;
+}

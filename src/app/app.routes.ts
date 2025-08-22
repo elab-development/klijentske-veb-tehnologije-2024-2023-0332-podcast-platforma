@@ -5,14 +5,16 @@ import { RegisterPage } from './pages/register-page/register-page';
 import { VideoPage } from './pages/video-page/video-page'
 import { Omiljeno } from './pages/omiljeno/omiljeno'
 import { Category } from './shared/components/category/category';
+import { ProfilePageComponent } from './pages/profile-page/profile-page';
 
 export const routes: Routes = [
+    { path: 'profile/:id', component: ProfilePageComponent },
     { path: 'category/:id', component: Category},
     { path: 'omiljeno', component: Omiljeno },
     { path: 'video/:id', component: VideoPage },
     { path: 'register', component: RegisterPage },
     { path: 'login', component: LoginPage },
     { path: 'home', component: HomePage },
-    { path: '', component: LoginPage },
-    { path: '**', redirectTo: 'login' }
+    { path: '', redirectTo: '/login', pathMatch: 'full' },
+    { path: '**', redirectTo: '/login' }
 ];

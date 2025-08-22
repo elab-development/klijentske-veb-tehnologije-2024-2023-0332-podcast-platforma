@@ -12,15 +12,6 @@ import { GetUser } from '../../../core/services/user/get-user';
 })
 export class Navbar {
   isOpen = false;
-
-  toggleDropdown() {
-    this.isOpen = !this.isOpen;
-  }
-
-  closeDropdown() {
-    this.isOpen = false;
-  }
-
   user?: User;
 
   constructor(private getUser: GetUser) {}
@@ -29,5 +20,13 @@ export class Navbar {
     this.getUser.getCurrentUser().subscribe(userData => {
       this.user = userData;
     });
+  }
+
+  toggleDropdown() {
+    this.isOpen = !this.isOpen;
+  }
+
+  closeDropdown() {
+    this.isOpen = false;
   }
 }

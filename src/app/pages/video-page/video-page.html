@@ -11,7 +11,7 @@
   <div class="video-info">
       <h2>{{ podcast.title }}</h2>
       <div class="profil-and-fav">
-      <a routerLink="/home"><img [src]="profilePicUrl"  alt="profilna" class="profilna"> {{ username }}</a>
+      <a [routerLink]="['/profile', podcast.uploadedBy]"><img [src]="profilePicUrl" alt="profilna" class="profilna"> {{ username }}</a>
       <a class="fav" (click)="toggleFavorite()" [class.fav-active]="isFav">
         ☆
       </a>

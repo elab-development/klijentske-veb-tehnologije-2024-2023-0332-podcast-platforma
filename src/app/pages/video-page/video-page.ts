@@ -9,6 +9,8 @@ import { RouterModule } from '@angular/router';
 import { PodcastCardComponent } from '../../shared/components/podcast-card/podcast-card';
 import { FavoritesService } from '../../core/services/favorites/favorites-service';
 import { Auth } from '@angular/fire/auth';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-video-page',
@@ -26,7 +28,6 @@ export class VideoPage implements OnInit {
   recommendedPodcast?: IPodcast;
   recommendationMessage?: string;
   currentPodcastId?: string;
-  router: any;
   isFav: boolean = false;
 
   private getPodcasts = inject(GetPodcasts);
@@ -35,7 +36,8 @@ export class VideoPage implements OnInit {
   private sanitizer = inject(DomSanitizer);
   private favoritesService = inject(FavoritesService);
   private auth = inject(Auth);
-  
+  private snackBar = inject(MatSnackBar);
+  private subscriptions: Subscription = new Subscription();
 
  ngOnInit(): void {
   this.route.paramMap.subscribe(params => {
@@ -116,17 +118,30 @@ async toggleFavorite(): Promise<void> {
 
     try {
       if (this.isFav) {
-        this.isFav = false; // odmah menja boju
+        this.isFav = false;
         await this.favoritesService.removeFromFavorites(this.currentPodcastId);
         console.log('Uklonjeno iz favorita');
+        this.showNotification('Uklonjeno iz "Omiljeno"');
       } else {
-        this.isFav = true; // odmah menja boju
+        this.isFav = true;
         await this.favoritesService.addToFavorites(this.currentPodcastId);
         console.log('Dodato u favorite');
+        this.showNotification('Dodato u "Omiljeno"');
       }
     } catch (err) {
       console.error(err);
     }
+  }
+
+  private showNotification(message: string): void {
+    if (this.snackBar) {
+      this.snackBar.open(message, 'Zatvori', {
+        duration: 3000,
+        horizontalPosition: 'center',
+        verticalPosition: 'bottom'
+      });
+    }
+    console.log('NOTIFIKACIJA:', message);
   }
 
 }

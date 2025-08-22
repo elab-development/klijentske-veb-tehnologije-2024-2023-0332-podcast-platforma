@@ -5,6 +5,7 @@ export class User implements IUser {
     email: string;
     username: string;
     photoURL?: string;
+    bannerURL?: string; 
     createdAt?: Date;
 
     constructor(data: any) {
@@ -12,10 +13,14 @@ export class User implements IUser {
         this.email = data.email;
         this.username = data.username;
         this.photoURL = data.photoURL || '';
+        this.bannerURL = data.bannerURL || '';
         this.createdAt = data.createdAt ? data.createdAt.toDate?.() || data.createdAt : undefined;
     }
 
     getProfilePic(): string {
         return this.photoURL || '/assets/img/user2.png';
     }
+      getBannerPic(): string {
+    return this.bannerURL || '/assets/img/banner.png';
+  }
 }

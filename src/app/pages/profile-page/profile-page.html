@@ -1,0 +1,69 @@
+<div class="profile-container" *ngIf="user">
+
+  <div class="banner"
+       [ngStyle]="{'background-image': 'url(' + user.getBannerPic() + ')'}"
+       (click)="onChangeBannerClick(bannerInput)"
+       [class.clickable]="isOwnProfile">
+    <input #bannerInput type="file" accept="image/*" (change)="onBannerSelected($event)" hidden>
+    <div class="banner-overlay" *ngIf="isOwnProfile">Promeni baner</div>
+  </div>
+
+  <div class="profile-header">
+    <div class="avatar-holder"
+         (click)="onChangeAvatarClick(avatarInput)"
+         [class.clickable]="isOwnProfile">
+      <img [src]="user.getProfilePic()" alt="profilna" class="profilna">
+      <input #avatarInput type="file" accept="image/*" (change)="onAvatarSelected($event)" hidden>
+      <div class="avatar-overlay" *ngIf="isOwnProfile">Promeni</div>
+    </div>
+
+    <div class="username">
+      {{ user.username || user.email }}
+      <div class="followers" *ngIf="followersCount$ | async as cnt">
+        {{ cnt }} pratilaca
+      </div>
+    </div>
+
+    <div class="profile-actions">
+
+      <button *ngIf="!isOwnProfile && currentUserId"
+              class="follow-btn"
+              (click)="toggleFollow()">
+        <span class="plus-icon">+</span>
+      </button>
+
+      <button class="logout-btn" *ngIf="isOwnProfile" (click)="logout()">⏻</button>
+    </div>
+  </div>
+
+
+  <div class="flash" *ngIf="flashMsg">{{ flashMsg }}</div>
+
+  <div class="filter-container">
+    <select id="sort" name="sort" [(ngModel)]="sortOption" (change)="sortPodcasts()">
+      <option value="" disabled selected hidden>Filter</option>
+      <option value="newest">Najnoviji prvo</option>
+      <option value="oldest">Najstariji prvo</option>
+      <option value="longest">Najduži prvo</option>
+      <option value="shortest">Najkraći prvo</option>
+      <option value="az">Abecedno rastuće</option>
+      <option value="za">Abecedno opadajuće</option>
+    </select>
+  </div>
+
+  <div *ngIf="podcasts.length === 0" class="no-podcasts">
+    Korisnik trenutno nema okačenih podkasta
+  </div>
+
+  <div *ngIf="podcasts.length > 0" class="podcast-list">
+    <a *ngFor="let podcast of displayedPodcasts"
+       [routerLink]="['/video', podcast.id]"
+       class="podcast-link">
+      <app-podcast-card [podcast]="podcast"></app-podcast-card>
+    </a>
+  </div>
+
+  <div class="load-more" *ngIf="displayedPodcasts.length < podcasts.length">
+    <button (click)="loadMore()">Učitaj još</button>
+  </div>
+</div>

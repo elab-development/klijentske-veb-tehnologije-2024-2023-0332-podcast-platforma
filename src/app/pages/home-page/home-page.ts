@@ -33,7 +33,6 @@ export class HomePage implements OnInit {
   ])
   .pipe(
     map(([allPodcasts, favorites]) => {
-      // --- Najnoviji ---
       const sorted = [...allPodcasts].sort((a, b) => {
         const dateA = a.uploadDate && 'toDate' in a.uploadDate
           ? a.uploadDate.toDate().getTime()
@@ -45,35 +44,29 @@ export class HomePage implements OnInit {
       });
       this.podcastsToShow = sorted.slice(0, 3);
 
-      // --- Preporučeni ---
       if (!favorites.length) {
         this.recommendedPodcasts = [];
         return;
       }
 
-      // filtriramo samo ispravne string ID-ove iz favorites
       const favoriteIds = favorites
         .map(f => f.videoId)
         .filter((id): id is string => typeof id === 'string');
 
-      // podkasti koji su u favorites (samo oni koji imaju ID)
       const favoritePodcasts = allPodcasts.filter(
         p => p.id && favoriteIds.includes(p.id)
       );
 
-      // sve kategorije iz omiljenih
       const favoriteCategories = Array.from(
         new Set(favoritePodcasts.map(p => p.category).filter(Boolean))
       );
 
-      // svi iz tih kategorija, ali nisu omiljeni
       const sameCategoryPodcasts = allPodcasts.filter(
         p => p.id &&
              favoriteCategories.includes(p.category) &&
              !favoriteIds.includes(p.id)
       );
 
-      // nasumično izaberi do 3
       const shuffled = sameCategoryPodcasts
         .map(p => ({ p, sort: Math.random() }))
         .sort((a, b) => a.sort - b.sort)
@@ -84,15 +77,6 @@ export class HomePage implements OnInit {
   )
   .subscribe();
 }
-
-  async logout() {
-    try {
-      await this.authService.logout();
-      this.router.navigate(['/login']);
-    } catch (error) {
-      console.error('Logout error:', error);
-    }
-  }
 
   trackByPodcastId(index: number, podcast: IPodcast): string {
     return podcast.id ?? '';
