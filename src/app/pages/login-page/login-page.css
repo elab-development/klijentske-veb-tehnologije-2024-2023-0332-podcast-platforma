@@ -120,3 +120,45 @@
     text-decoration: underline;
 }
 .links a.disabled { pointer-events: none; opacity: 0.6; }
+
+/*Responzivnost*/
+@media (max-width: 1200px) {
+  .form-holder { width: 460px; height: auto; padding: 20px 24px; border-radius: 28px; }
+  .login-forma input { width: 100%; height: 56px; }
+}
+
+@media (max-width: 992px) {
+  .form-holder { width: 420px; padding: 18px 22px; }
+  .form-logo { width: 80px; height: 80px; }
+  .form-holder h1 { font-size: 28px; letter-spacing: 4px; line-height: 32px; }
+  .form-holder p { font-size: 15px; }
+}
+
+@media (max-width: 768px) {
+  .login-page { background-position: center; }
+  .container { min-height: 100vh; height: auto; padding: 24px; align-items: flex-start; }
+  .form-holder { width: 100%; max-width: 420px; border-radius: 24px; padding: 20px; }
+  .login-forma { gap: 6px; }
+  .login-forma input { width: 100%; height: 54px; margin-top: 14px; }
+  .login-forma button { width: 100%; height: 54px; margin-top: 18px; }
+}
+
+@media (max-width: 600px) {
+  .container { padding: 20px 16px; }
+  .form-holder { max-width: 400px; padding: 18px; }
+  .form-logo { width: 72px; height: 72px; }
+  .form-holder h1 { font-size: 26px; letter-spacing: 3px; }
+  .form-holder p { font-size: 14px; }
+  .links a { font-size: 15px; }
+  .error-message { max-width: 90vw; padding: 16px 20px; font-size: 16px; }
+}
+
+@media (max-width: 420px) {
+  .container { padding: 16px 12px; }
+  .form-holder { max-width: 100%; padding: 16px; border-radius: 20px; }
+  .form-holder h1 { font-size: 24px; letter-spacing: 2px; line-height: 30px; }
+  .login-forma input { height: 50px; margin-top: 12px; }
+  .login-forma button { height: 50px; margin-top: 16px; }
+  .links a { font-size: 14px; line-height: 16px; }
+  .error-message { padding: 14px 16px; font-size: 15px; }
+}

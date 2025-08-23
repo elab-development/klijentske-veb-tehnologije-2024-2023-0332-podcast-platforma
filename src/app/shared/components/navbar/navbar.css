@@ -111,3 +111,58 @@ body {
     background-color: rgb(24, 218, 204);
     color: #FEFE3A;
 }
+
+/*Responzivnost*/
+@media (max-width: 1200px) {
+  .navbar img { width: 50px; height: 50px; }
+  .navbar li a { margin-left: 12px; padding: 0.45rem 0.8rem; }
+  .navbar li.search-bar input[type="text"] { margin-left: 40px; }
+}
+
+@media (max-width: 992px) {
+  .navbar ul {
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 8px 12px;
+    gap: 8px 12px;
+  }
+  .navbar img { width: 46px; height: 46px; }
+  .navbar li.search-bar {
+    order: 3;
+    flex-basis: 100%;
+    justify-content: stretch;
+  }
+  .navbar li.search-bar input[type="text"] {
+    margin: 0;
+    width: 100%;
+  }
+  .objavi-podcast { padding: 6px 12px; margin-left: 12px; }
+}
+
+@media (max-width: 768px) {
+  .navbar li a,
+  .navbar li.dropdown .dropdown-toggle {
+    padding: 0.4rem 0.7rem;
+    margin-left: 8px;
+    font-size: 0.95rem;
+  }
+  .profilna { width: 36px; height: 36px; }
+  .navbar img { width: 42px; height: 42px; }
+}
+
+@media (max-width: 600px) {
+  .navbar ul { gap: 6px 10px; }
+  .navbar li a,
+  .navbar li.dropdown .dropdown-toggle { font-size: 0.9rem; }
+  .objavi-podcast { padding: 6px 10px; border-radius: 20px; }
+  .profilna { width: 34px; height: 34px; }
+}
+
+@media (max-width: 420px) {
+  .navbar ul { padding: 6px 8px; gap: 6px; }
+  .navbar img { width: 38px; height: 38px; }
+  .navbar li a,
+  .navbar li.dropdown .dropdown-toggle { font-size: 0.85rem; padding: 0.35rem 0.6rem; }
+  .objavi-podcast { padding: 5px 10px; font-size: 0.9rem; }
+  .profilna { width: 32px; height: 32px; }
+}

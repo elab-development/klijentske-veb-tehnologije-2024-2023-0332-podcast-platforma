@@ -56,3 +56,44 @@
   color: #ffffff;
   padding: 4px 8px;
 }
+/*Responzivnost*/
+@media (max-width: 1200px) {
+  .podcasts-container { justify-content: center; gap: 16px; padding: 20px 24px; }
+  .podcasts-container app-podcast-card,
+  .podcast-link { flex: 1 1 300px; max-width: 380px; }
+  .h1-holder { font-size: 48px; margin-top: 2.5%; }
+  .h1-holder a { font-size: 22px; }
+}
+
+@media (max-width: 992px) {
+  .podcasts-container { padding: 18px; gap: 14px; }
+  .podcasts-container app-podcast-card,
+  .podcast-link { flex: 1 1 320px; max-width: 100%; }
+  .h1-holder { font-size: 42px; margin-left: 2%; }
+  .h1-holder a { font-size: 20px; }
+  .sort-container { padding: 14px 18px; }
+}
+
+@media (max-width: 768px) {
+  .podcasts-container { padding: 16px; gap: 14px; }
+  .podcasts-container app-podcast-card,
+  .podcast-link { flex: 1 1 320px; }
+  .h1-holder { font-size: 36px; margin-left: 3%; margin-top: 2%; }
+  .h1-holder a { font-size: 18px; }
+}
+
+@media (max-width: 600px) {
+  .podcasts-container { justify-content: center; padding: 14px 10px; gap: 12px; }
+  .podcasts-container app-podcast-card,
+  .podcast-link { flex: 1 1 100%; max-width: 520px; }
+  .h1-holder { font-size: 30px; margin-left: 4%; margin-top: 2%; }
+  .h1-holder a { font-size: 16px; }
+  .sort-container { flex-direction: column; align-items: stretch; gap: 8px; }
+  #sort { width: 100%; font-size: 15px; padding: 8px 10px; }
+}
+
+@media (max-width: 420px) {
+  .podcasts-container { padding: 10px 8px; gap: 10px; }
+  .h1-holder { font-size: 26px; margin-left: 4%; margin-top: 2%; }
+  .h1-holder a { font-size: 15px; }
+}

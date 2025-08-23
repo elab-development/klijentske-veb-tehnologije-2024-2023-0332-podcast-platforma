@@ -122,3 +122,41 @@
   border: 1px solid #18DACC;
   color: #18DACC;
 }
+/*Responzivnost*/
+@media (max-width: 1200px) {
+  .video-container { padding: 4% 6%; }
+  .ostatak-video-page { gap: 16px; }
+  .comment-section, .recommendation-section { max-width: 48%; }
+  .video-container iframe { width: 100%; height: auto; aspect-ratio: 16 / 9; display: block; }
+}
+
+@media (max-width: 900px) {
+  .video-container { padding: 24px 16px; }
+  .ostatak-video-page {
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .comment-section, .recommendation-section {
+    max-width: 100%;
+    width: 100%;
+    flex: 1 1 auto;
+  }
+}
+
+@media (max-width: 700px) {
+  .profil-and-fav { gap: 10px; }
+  .comment-section textarea { min-height: 96px; }
+  .comment-section button, .load-more {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .video-container { padding: 18px 12px; }
+  .ostatak-video-page { gap: 12px; }
+  .comment-item { padding: 8px 0; }
+  .comment-header { gap: 8px; }
+  .comment-date { font-size: 11px; }
+  .fav { font-size: 28px; }
+}

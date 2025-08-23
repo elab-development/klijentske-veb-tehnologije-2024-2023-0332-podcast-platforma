@@ -111,3 +111,38 @@
   font-size: 14px;
 }
 
+/*Responzivnost*/
+@media (max-width: 1200px) {
+  .upload-wrapper { gap: 48px; padding: 40px 48px; }
+  .left { flex: 0 0 480px; }
+  .thumb-drop { width: 480px; height: 320px; }
+}
+
+@media (max-width: 992px) {
+  .upload-wrapper { gap: 32px; padding: 32px; }
+  .left { flex: 0 0 420px; }
+  .thumb-drop { width: 420px; height: 280px; }
+  .pill-input, .rounded-area { font-size: 17px; }
+}
+
+@media (max-width: 768px) {
+  .upload-wrapper { flex-direction: column; gap: 24px; padding: 28px 24px; }
+  .left { flex: 0 0 auto; align-items: stretch; }
+  .thumb-drop { width: 100%; height: auto; aspect-ratio: 3 / 2; }
+  .publish-btn { width: 100%; }
+  .right { gap: 18px; }
+}
+
+@media (max-width: 600px) {
+  .upload-wrapper { padding: 22px 16px; }
+  .pill-input, .rounded-area { font-size: 16px; padding: 12px 18px; }
+  .duration-row { flex-wrap: wrap; gap: 12px; }
+  .pill-input.small { max-width: 100%; }
+}
+
+@media (max-width: 420px) {
+  .upload-wrapper { padding: 18px 12px; gap: 20px; }
+  .thumb-placeholder { font-size: 18px; padding: 16px; }
+  .publish-btn { padding: 10px 20px; font-size: 16px; }
+  .hint, .errors { font-size: 13px; }
+}

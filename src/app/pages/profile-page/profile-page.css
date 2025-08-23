@@ -147,3 +147,59 @@
   margin-top: 10px; background: #0d3b66; color: #fff;
   padding: 8px 12px; border-radius: 8px; text-align: center;
 }
+
+/*Responzivnost*/
+@media (max-width: 1200px) {
+  .profile-container { padding: 16px 24px; }
+  .profile-header { margin-top: 0; }
+  .banner { height: 160px; }
+  .profilna { width: 88px; height: 88px; }
+  .username { font-size: 22px; }
+  .podcast-list { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+}
+
+@media (max-width: 992px) {
+  .profile-header { flex-wrap: wrap; gap: 12px; padding: 16px; }
+  .profile-actions { gap: 10px; }
+  .profilna { width: 80px; height: 80px; }
+  .banner { height: 150px; }
+  .username { font-size: 21px; }
+  .podcast-list { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+}
+
+@media (max-width: 768px) {
+  .profile-container { padding: 14px 16px; }
+  .profile-header { flex-direction: column; align-items: center; text-align: center; gap: 10px; }
+  .profile-actions { margin-top: 6px; }
+  .banner { height: 140px; border-radius: 10px; }
+  .avatar-holder { margin-top: -36px; }
+  .username { font-size: 20px; }
+  .followers { font-size: 13px; }
+  .filter-container { justify-content: flex-start; padding: 0 4px; }
+  #sort { font-size: 15px; padding: 6px 8px; }
+  .podcast-list { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; }
+  .logout-btn { font-size: 22px; }
+  .follow-btn { width: 34px; height: 34px; }
+}
+
+@media (max-width: 600px) {
+  .banner { height: 130px; }
+  .profilna { width: 74px; height: 74px; }
+  .username { font-size: 19px; }
+  .podcast-list { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+  .load-more button { width: 100%; }
+  .flash { padding: 6px 10px; }
+}
+
+@media (max-width: 420px) {
+  .profile-container { padding: 12px; }
+  .profile-header { padding: 12px; }
+  .banner { height: 120px; border-radius: 8px; }
+  .profilna { width: 72px; height: 72px; }
+  .username { font-size: 18px; }
+  .avatar-overlay { font-size: 11px; }
+  .banner-overlay { font-size: 11px; padding: 5px 8px; }
+  .filter-container { flex-direction: column; align-items: stretch; gap: 8px; }
+  #sort { width: 100%; }
+  .podcast-list { grid-template-columns: 1fr; gap: 10px; }
+}
