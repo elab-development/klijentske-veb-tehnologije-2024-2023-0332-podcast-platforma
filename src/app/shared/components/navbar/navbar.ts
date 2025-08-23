@@ -1,18 +1,21 @@
-import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
 import { User } from '../../../core/models/user/user';
 import { GetUser } from '../../../core/services/user/get-user';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterModule],
+  imports: [RouterModule, FormsModule],
   templateUrl: './navbar.html',
   styleUrls: ['./navbar.css']
 })
 export class Navbar {
   isOpen = false;
   user?: User;
+  private router = inject(Router);
+  searchQ = '';
 
   constructor(private getUser: GetUser) {}
 
@@ -28,5 +31,10 @@ export class Navbar {
 
   closeDropdown() {
     this.isOpen = false;
+  }
+    onSearch() {
+    const q = (this.searchQ || '').trim();
+    if (!q) return;
+    this.router.navigate(['/search'], { queryParams: { q } });
   }
 }

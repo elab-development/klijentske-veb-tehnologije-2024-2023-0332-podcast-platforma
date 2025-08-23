@@ -15,8 +15,13 @@
                 <li><a routerLink="/category/debata" (click)="closeDropdown()">Debata</a></li>
             </ul>
         </li>
-        <li class="search-bar">
-            <input type="text" placeholder="Pretraga⌕" />
+       <li class="search-bar">
+            <input
+                type="text"
+                placeholder="Pretraga⌕"
+                [(ngModel)]="searchQ"
+                (keyup.enter)="onSearch()"
+            />
         </li>
         <li><a routerLink="/omiljeno">Omiljeni</a></li>
         <li><button class="objavi-podcast" routerLink="/upload">Objavi podkast</button></li>

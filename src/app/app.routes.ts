@@ -7,8 +7,11 @@ import { Omiljeno } from './pages/omiljeno/omiljeno'
 import { Category } from './shared/components/category/category';
 import { ProfilePageComponent } from './pages/profile-page/profile-page';
 import { UploadPodcastPage } from './pages/upload-podcast/upload-podcast';
+import { SearchPage } from './pages/search-page/search-page';
+
 
 export const routes: Routes = [
+    { path: 'search', component: SearchPage },
     { path: 'upload', component: UploadPodcastPage },
     { path: 'profile/:id', component: ProfilePageComponent },
     { path: 'category/:id', component: Category},

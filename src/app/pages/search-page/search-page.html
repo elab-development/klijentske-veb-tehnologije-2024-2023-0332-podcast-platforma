@@ -1,0 +1,20 @@
+<div class="search-wrap">
+  <div class="headline">
+    Rezultat pretrage “{{ (query$ | async) || '' }}”:
+    <span class="filter">Filter</span>
+  </div>
+
+  <ng-container *ngIf="(results$ | async) as results">
+    <div *ngIf="results.length; else empty">
+      <div class="results">
+        <a *ngFor="let p of results" [routerLink]="['/video', p.id]" class="card-link">
+          <app-podcast-card [podcast]="p"></app-podcast-card>
+        </a>
+      </div>
+    </div>
+
+    <ng-template #empty>
+      <div class="empty">Nema rezultata za vašu pretragu — pokušajte ponovo!</div>
+    </ng-template>
+  </ng-container>
+</div>
