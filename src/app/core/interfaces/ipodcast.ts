@@ -3,7 +3,7 @@ export interface IPodcast {
   title: string;           
   description: string;     
   videoUrl: string;       
-  thumbnailUrl: string;    
+  thumbmailUrl: string;    
   category: string;        
   duration: string;        
   uploadDate: any;         
