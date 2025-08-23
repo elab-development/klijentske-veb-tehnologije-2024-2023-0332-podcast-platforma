@@ -27,7 +27,7 @@
      <div class="recommendation-section">
       <h2>{{ recommendationMessage }}</h2>
       <div *ngIf="recommendedPodcast" class="recommended-podcast">
-        <a [routerLink]="['/video', recommendedPodcast.id]">
+        <a [routerLink]="['/video', recommendedPodcast.id]" style="text-decoration: none;">
             <app-podcast-card [podcast]="recommendedPodcast"></app-podcast-card>
         </a>
       </div>

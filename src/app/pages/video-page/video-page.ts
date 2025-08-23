@@ -90,7 +90,7 @@ export class VideoPage implements OnInit {
       if (otherPodcasts.length > 0) {
         const randomIndex = Math.floor(Math.random() * otherPodcasts.length);
         this.recommendedPodcast = otherPodcasts[randomIndex];
-        this.recommendationMessage = 'Recommended Podcast';
+        this.recommendationMessage = 'Preporučen Podcast';
       } else {
         this.recommendedPodcast = undefined;
         this.recommendationMessage = 'NEMA PREPORUČENIH PODKASTA';
