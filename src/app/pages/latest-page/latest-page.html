@@ -1,0 +1,17 @@
+<div class="wrap">
+  <div class="h1-holder">
+    <h1>Najnovije</h1>
+  </div>
+
+  <div class="grid">
+    <a *ngFor="let p of items; trackBy: trackById" [routerLink]="['/video', p.id]" class="card-link">
+      <app-podcast-card [podcast]="p"></app-podcast-card>
+    </a>
+  </div>
+
+  <div class="load-more">
+    <button (click)="loadMore()" [disabled]="!canLoadMore || loading">
+      {{ loading ? 'Učitavanje…' : (canLoadMore ? 'Učitaj još' : 'Nema više') }}
+    </button>
+  </div>
+</div>

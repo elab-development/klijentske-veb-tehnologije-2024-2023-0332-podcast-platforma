@@ -1,0 +1,25 @@
+<div class="wrap">
+  <div class="h1-holder">
+    <h1>Preporučeno</h1>
+  </div>
+
+  <div *ngIf="loading" class="hint">Učitavanje…</div>
+
+  <ng-container *ngIf="!loading">
+    <div *ngIf="visible.length; else noRecs" class="grid">
+      <a *ngFor="let p of visible; trackBy: trackById" [routerLink]="['/video', p.id]" class="card-link">
+        <app-podcast-card [podcast]="p"></app-podcast-card>
+      </a>
+    </div>
+
+    <div class="load-more" *ngIf="visible.length">
+      <button (click)="loadMore()" [disabled]="!canLoadMore">
+        {{ canLoadMore ? 'Učitaj još' : 'Nema više' }}
+      </button>
+    </div>
+
+    <ng-template #noRecs>
+      <div class="hint">Još nemamo preporuke. Dodajte nešto u Omiljeno da bismo znali šta volite.</div>
+    </ng-template>
+  </ng-container>
+</div>

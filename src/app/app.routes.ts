@@ -8,9 +8,13 @@ import { Category } from './shared/components/category/category';
 import { ProfilePageComponent } from './pages/profile-page/profile-page';
 import { UploadPodcastPage } from './pages/upload-podcast/upload-podcast';
 import { SearchPage } from './pages/search-page/search-page';
+import { RecommendedPage } from './pages/recommended-page/recommended-page';
+import { LatestPage } from './pages/latest-page/latest-page';
 
 
 export const routes: Routes = [
+    { path: 'latest', component: LatestPage },
+    { path: 'recommended', component: RecommendedPage },
     { path: 'search', component: SearchPage },
     { path: 'upload', component: UploadPodcastPage },
     { path: 'profile/:id', component: ProfilePageComponent },
