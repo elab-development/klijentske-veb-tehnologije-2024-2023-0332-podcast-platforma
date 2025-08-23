@@ -1,4 +1,3 @@
-// src/app/core/services/favorites.service.ts
 import { Injectable, inject, EnvironmentInjector } from '@angular/core';
 import { Firestore, doc, setDoc, deleteDoc, docData, collection, collectionData } from '@angular/fire/firestore';
 import { Auth, authState } from '@angular/fire/auth';

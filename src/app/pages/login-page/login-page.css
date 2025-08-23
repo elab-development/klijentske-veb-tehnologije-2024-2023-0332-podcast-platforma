@@ -119,3 +119,4 @@
     color: #18DACC;
     text-decoration: underline;
 }
+.links a.disabled { pointer-events: none; opacity: 0.6; }

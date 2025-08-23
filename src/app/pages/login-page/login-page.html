@@ -17,7 +17,7 @@
                 </form>
                 <div class="links">
                 <a [routerLink]="['/register']">Registruj se ovde!</a>
-                <a href="#">Zaboravili ste lozinku?</a>
+               <a href="#" (click)="onResetPassword($event)" [class.disabled]="!email || busy">Zaboravili ste lozinku?</a>
                 </div>
             </div>
         </div>

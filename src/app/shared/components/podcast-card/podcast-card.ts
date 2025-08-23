@@ -27,10 +27,8 @@ export class PodcastCardComponent {
     let dateObj: Date;
 
     if (typeof this.podcast.uploadDate === 'object' && 'toDate' in this.podcast.uploadDate) {
-      // Firestore Timestamp
       dateObj = this.podcast.uploadDate.toDate();
     } else {
-      // String ili broj
       dateObj = new Date(this.podcast.uploadDate);
     }
 

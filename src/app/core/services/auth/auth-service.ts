@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import {Auth, signInWithEmailAndPassword, UserCredential, createUserWithEmailAndPassword, updateProfile} from '@angular/fire/auth';
+import {Auth, signInWithEmailAndPassword, UserCredential, createUserWithEmailAndPassword, updateProfile, sendPasswordResetEmail} from '@angular/fire/auth';
 import { Firestore, doc, setDoc } from '@angular/fire/firestore';
 
 
@@ -46,5 +46,9 @@ export class AuthService {
     } catch (error) {
       throw error;
     }
+  }
+
+   async resetPassword(email: string): Promise<void> {
+    await sendPasswordResetEmail(this.auth, email.trim());
   }
 }
