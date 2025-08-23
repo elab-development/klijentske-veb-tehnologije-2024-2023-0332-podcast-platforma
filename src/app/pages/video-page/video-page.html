@@ -18,19 +18,49 @@
       </div>
     <p>{{ podcast.description }}</p>
   </div>
-  <div class="ostatak-video-page"> 
-    <div class="comment-section">
-        <textarea name="comment-content" placeholder="Ostavite komentar"></textarea>
-        <button>Objavi</button>
-        <p>Funkcija komentari dolazi kasnije</p>
-    </div>
-     <div class="recommendation-section">
-      <h2>{{ recommendationMessage }}</h2>
-      <div *ngIf="recommendedPodcast" class="recommended-podcast">
-        <a [routerLink]="['/video', recommendedPodcast.id]" style="text-decoration: none;">
-            <app-podcast-card [podcast]="recommendedPodcast"></app-podcast-card>
-        </a>
+  <div class="ostatak-video-page">
+
+  <div class="comment-section">
+    <textarea
+      name="comment-content"
+      placeholder="Ostavite komentar"
+      [(ngModel)]="newComment"
+      rows="3">
+    </textarea>
+
+    <button (click)="postComment()" [disabled]="!newComment.trim()">
+      Objavi
+    </button>
+
+    <p *ngIf="!auth.currentUser">Morate biti prijavljeni da biste ostavili komentar.</p>
+
+    <div class="comments-list" *ngIf="comments?.length; else noComments">
+      <div class="comment-item" *ngFor="let c of comments">
+        <div class="comment-header">
+          <a [routerLink]="['/profile', c.userId]" class="comment-username">{{ c.username }}</a>
+          <span class="comment-date">{{ c.createdAt.toDate() | date:'dd.MM.yyyy HH:mm' }}</span>
+        </div>
+        <div class="comment-content">
+          {{ c.content }}
+        </div>
       </div>
+
+      <button class="load-more" *ngIf="canLoadMore" (click)="loadMoreComments()" [disabled]="loadingComments">
+        {{ loadingComments ? 'Učitavanje…' : 'Učitaj još' }}
+      </button>
+    </div>
+
+    <ng-template #noComments>
+      <p>Još nema komentara. Budite prvi!</p>
+    </ng-template>
+  </div>
+
+  <div class="recommendation-section">
+    <h2>{{ recommendationMessage }}</h2>
+    <div *ngIf="recommendedPodcast" class="recommended-podcast">
+      <a [routerLink]="['/video', recommendedPodcast.id]" style="text-decoration: none;">
+        <app-podcast-card [podcast]="recommendedPodcast"></app-podcast-card>
+      </a>
     </div>
   </div>
-  </div>
+</div>

@@ -11,10 +11,16 @@ import { FavoritesService } from '../../core/services/favorites/favorites-servic
 import { Auth } from '@angular/fire/auth';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
+import { FormsModule } from '@angular/forms';
+import { DocumentData, QueryDocumentSnapshot } from '@angular/fire/firestore';
+import { CommentsService } from '../../core/services/comments/comments-service';
+import { IComment } from '../../core/interfaces/icomment';
+
+
 
 @Component({
   selector: 'app-video-page',
-  imports: [ CommonModule, RouterModule, PodcastCardComponent],
+  imports: [ CommonModule, RouterModule, PodcastCardComponent, FormsModule],
   standalone: true,
   templateUrl: './video-page.html',
   styleUrls: ['./video-page.css']
@@ -29,15 +35,21 @@ export class VideoPage implements OnInit {
   recommendationMessage?: string;
   currentPodcastId?: string;
   isFav: boolean = false;
+  newComment: string = '';
+  comments: IComment[] = [];
+  commentsCursor: QueryDocumentSnapshot<DocumentData> | null = null;
+  loadingComments = false;
+  canLoadMore = true; 
 
   private getPodcasts = inject(GetPodcasts);
   private getUser = inject(GetUser);
   private route = inject(ActivatedRoute);
   private sanitizer = inject(DomSanitizer);
   private favoritesService = inject(FavoritesService);
-  private auth = inject(Auth);
+  public auth = inject(Auth);
   private snackBar = inject(MatSnackBar);
   private subscriptions: Subscription = new Subscription();
+  private commentsService = inject(CommentsService);
 
  ngOnInit(): void {
   this.route.paramMap.subscribe(params => {
@@ -45,6 +57,7 @@ export class VideoPage implements OnInit {
     if (id) {
       this.currentPodcastId = id;
       this.loadPodcast(id);
+      this.loadInitialComments();
 
       this.auth.onAuthStateChanged(user => {
         if (user) {
@@ -144,4 +157,48 @@ async toggleFavorite(): Promise<void> {
     console.log('NOTIFIKACIJA:', message);
   }
 
+  async loadInitialComments(): Promise<void> {
+  if (!this.currentPodcastId) return;
+  this.comments = [];
+  this.commentsCursor = null;
+  this.canLoadMore = true;
+  await this.loadMoreComments();
+}
+
+async loadMoreComments(): Promise<void> {
+  if (!this.currentPodcastId || !this.canLoadMore || this.loadingComments) return;
+  this.loadingComments = true;
+  try {
+    const { items, lastDoc } = await this.commentsService.getCommentsPage(
+      this.currentPodcastId,
+      3,
+      this.commentsCursor
+    );
+    this.comments.push(...items);
+    this.commentsCursor = lastDoc;
+    this.canLoadMore = !!lastDoc && items.length > 0;
+  } finally {
+    this.loadingComments = false;
+  }
+}
+
+async postComment(): Promise<void> {
+  const content = this.newComment.trim();
+  if (!content || !this.currentPodcastId) return;
+
+  const user = this.auth.currentUser;
+  if (!user) {
+    this.showNotification('Morate biti prijavljeni da biste ostavili komentar.');
+    return;
+  }
+
+  try {
+    await this.commentsService.addComment(this.currentPodcastId, content);
+    this.newComment = '';
+    await this.loadInitialComments();
+  } catch (e) {
+    console.error(e);
+    this.showNotification('Greška pri objavi komentara.');
+  }
+}
 }
