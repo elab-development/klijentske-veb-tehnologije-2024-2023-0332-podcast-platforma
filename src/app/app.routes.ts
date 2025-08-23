@@ -6,8 +6,10 @@ import { VideoPage } from './pages/video-page/video-page'
 import { Omiljeno } from './pages/omiljeno/omiljeno'
 import { Category } from './shared/components/category/category';
 import { ProfilePageComponent } from './pages/profile-page/profile-page';
+import { UploadPodcastPage } from './pages/upload-podcast/upload-podcast';
 
 export const routes: Routes = [
+    { path: 'upload', component: UploadPodcastPage },
     { path: 'profile/:id', component: ProfilePageComponent },
     { path: 'category/:id', component: Category},
     { path: 'omiljeno', component: Omiljeno },

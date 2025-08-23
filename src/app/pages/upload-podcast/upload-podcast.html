@@ -1,0 +1,65 @@
+<div class="upload-wrapper">
+  <div class="left">
+    <label
+      class="thumb-drop"
+      (drop)="onDrop($event)"
+      (dragover)="onDragOver($event)"
+    >
+      <input type="file" accept="image/*" (change)="onFileSelected($event)" hidden>
+      <ng-container *ngIf="previewUrl(); else emptyThumb">
+        <img [src]="previewUrl()!" alt="thumbnail preview">
+      </ng-container>
+      <ng-template #emptyThumb>
+        <div class="thumb-placeholder">
+          Izaberite thumbnail<br>za vaš podkast
+        </div>
+      </ng-template>
+    </label>
+
+   <button class="publish-btn"
+        (click)="submit()"
+        [disabled]="form.invalid || !file() || submitting()">
+    {{ submitting() ? 'Objavljivanje…' : 'Objavi' }}
+    </button>
+  </div>
+
+  <div class="right">
+    <input class="pill-input"
+           type="text"
+           placeholder="Unesite naslov"
+           [formControl]="form.controls.title">
+
+    <input class="pill-input"
+           type="text"
+           placeholder="Unesite link ka podkastu"
+           [formControl]="form.controls.videoUrl">
+
+    <input class="pill-input"
+           type="text"
+           placeholder="Kategorija"
+           [formControl]="form.controls.category">
+
+    <textarea class="rounded-area"
+              rows="6"
+              placeholder="Napišite opis"
+              [formControl]="form.controls.description"></textarea>
+
+    <div class="duration-row">
+      <input class="pill-input small"
+             type="text"
+             inputmode="numeric"
+             pattern="\d*"
+             placeholder="Vreme trajanja (min)"
+             [formControl]="form.controls.duration">
+    </div>
+
+    <div class="errors">
+      <div *ngIf="form.controls.title.touched && form.controls.title.invalid">Naslov je obavezan.</div>
+      <div *ngIf="form.controls.videoUrl.touched && form.controls.videoUrl.errors?.['youtube']">Dozvoljeni su samo YouTube linkovi.</div>
+      <div *ngIf="form.controls.category.touched && form.controls.category.invalid">Kategorija je obavezna.</div>
+      <div *ngIf="form.controls.description.touched && form.controls.description.invalid">Opis je obavezan.</div>
+      <div *ngIf="form.controls.duration.touched && form.controls.duration.invalid">Unesite broj minuta (npr. 42).</div>
+      <div *ngIf="!file()">Dodajte thumbnail sliku.</div>
+    </div>
+  </div>
+</div>

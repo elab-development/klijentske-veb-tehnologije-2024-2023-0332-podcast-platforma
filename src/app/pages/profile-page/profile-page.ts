@@ -35,7 +35,6 @@ export class ProfilePageComponent implements OnInit {
   followersCount$?: Observable<number>;
   isFollowing$?: Observable<boolean>;
 
-  // za brzu poruku (toast zamena)
   flashMsg = '';
   flashTimer?: any;
 
@@ -182,3 +181,4 @@ export class ProfilePageComponent implements OnInit {
     this.flashTimer = setTimeout(() => (this.flashMsg = ''), 2200);
   }
 }
+
